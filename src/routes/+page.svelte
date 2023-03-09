@@ -1,23 +1,12 @@
 <script lang="ts">
-    import MessageInput from '$lib/MessageInput.svelte';
+    import MessageInput from '$lib/PromptInput.svelte';
 
     let waitingForResponse = false;
 
     let messages: {
         role: 'user' | 'assistant';
         content: string;
-    }[] = [
-        {
-            role: 'user',
-            content: 'Hello, how are you doing?'
-        },
-        {
-            role: 'assistant',
-            content: `\n\nAs an AI language model, I don't experience emotions or physical sensations, but I'm functioning properly and ready to assist you. How about you? How can I be of help today?`
-        }
-    ];
-
-    let input = '';
+    }[] = [];
 
     async function sendMessage(event: CustomEvent) {
         messages = [...messages, { role: 'user', content: event.detail }];
@@ -45,23 +34,35 @@
     <meta name="description" content="OpenAI SvelteKit starter" />
 </svelte:head>
 
-<section>
-    <ul class="messages border rounded">
+<section class="chat-view">
+    <h1>Chat</h1>
+
+    <ul class="messages">
         {#each messages as message}
-            <li class="message" class:user={message.role === 'user'}>
+            <li class="message border rounded" class:user={message.role === 'user'}>
                 {message.content}
             </li>
         {/each}
 
         {#if waitingForResponse}
-            <li class="message">Assistant is typing...</li>
+            <li class="message border rounded">Assistant is typing...</li>
         {/if}
     </ul>
 
-    <MessageInput on:send={sendMessage} />
+    <MessageInput on:send={sendMessage} placeholder="Message" />
 </section>
 
 <style>
+    .chat-view {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    h1 {
+        margin: 0 0 3rem;
+    }
+
     ul.messages {
         list-style: none;
         margin: 0;
@@ -69,19 +70,19 @@
         display: flex;
         flex-direction: column;
         overflow: auto;
-        margin-bottom: 2rem;
-    }
-
-    li + li {
-        border-top: 1px solid var(--border-color);
+        margin-bottom: auto;
+        gap: 1rem;
     }
 
     .message {
+        flex: 1;
         padding: 1rem;
         background: rgb(240 249 255);
+        max-width: 40rem;
     }
 
     .message.user {
         background: #fff;
+        margin-left: auto;
     }
 </style>
