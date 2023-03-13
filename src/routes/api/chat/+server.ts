@@ -6,8 +6,8 @@ export const POST = async (event: RequestEvent) => {
     const { message } = requestBody;
 
     /*
-        If you want the model to have context (know about previous messages)
-        you will need to send them all, not just the most recent one.
+        If you want the AI to have context you will need to send previous
+        messages as well, not just the most recent one.
         Keep in mind there is a limit of 4096 tokens (~3000 words) per request currently.
     */
     const res = await openai.createChatCompletion({
