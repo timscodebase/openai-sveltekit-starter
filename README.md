@@ -1,38 +1,37 @@
-# create-svelte
+# OpenAI SvelteKit starter
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+Starter template for teams who want to use SvelteKit and OpenAI for the next Uni Micro hackathon.
 
-## Creating a project
 
-If you're seeing this, you've probably already done this step. Congrats!
+## Getting started
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+**Environment variable**
 
-# create a new project in my-app
-npm create svelte@latest my-app
+You'll need to create a file called `.env` in the root of the project. This is where you supply your OpenAI API key.
+
+Prefixing the variable with `SECRET_` will make sure it's only available on the backend. Trying to import the variable in a piece of code that runs on the client will make SvelteKit throw a compilation error.
+
+An example of what this file should contain is available in [.env.example](.env.example).
+
+
+**Installing dependencies** 
+
+```
+npm install
 ```
 
-## Developing
+**Starting the dev server**
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
+```
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
 
-## Building
+## Deployment
 
-To create a production version of your app:
+There are multiple good options for deploying SvelteKit apps, but [Vercel](https://vercel.com/) is probably the easiest.
 
-```bash
-npm run build
-```
+It's a zero config (except for env variables) deployment option with CI batteries included. 
 
-You can preview the production build with `npm run preview`.
+Set up a free account, give access your repository, and Vercel will deploy whenever you push to the main branch.
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+Backend endpoints are deployed as serverless functions.
