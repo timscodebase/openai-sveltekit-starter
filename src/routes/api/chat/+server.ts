@@ -8,7 +8,7 @@ export const POST = async (event: RequestEvent) => {
     /*
         If you want the model to have context (know about previous messages)
         you will need to send them all, not just the most recent one.
-        This might cause issues due to the 4000 (?) character limit.
+        Keep in mind there is a limit of 4096 tokens (~3000 words) per request currently.
     */
     const res = await openai.createChatCompletion({
         model: 'gpt-3.5-turbo',
