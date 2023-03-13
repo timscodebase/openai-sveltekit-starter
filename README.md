@@ -32,6 +32,6 @@ There are multiple good options for deploying SvelteKit apps, but [Vercel](https
 
 It's a zero config (except for env variables) deployment option with CI batteries included. 
 
-Set up a free account, give access your repository, and Vercel will deploy whenever you push to the main branch.
+Set up a free account, give access to your repository, and Vercel will deploy whenever you push to the main branch.
 
 Backend endpoints are deployed as serverless functions.
